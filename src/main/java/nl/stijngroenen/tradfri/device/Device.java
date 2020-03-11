@@ -16,6 +16,13 @@ public abstract class Device {
 
     public abstract boolean applyUpdates();
 
+    public Light toLight(){
+        if(this.getClass() == Light.class){
+            return (Light) this;
+        }
+        return null;
+    }
+
     public String getName() {
         return this.name;
     }
