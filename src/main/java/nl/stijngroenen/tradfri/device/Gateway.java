@@ -56,6 +56,8 @@ public class Gateway {
         DeviceResponse response = coapClient.get(ApiEndpoint.getUri(ApiEndpoint.DEVICES, String.valueOf(id)), DeviceResponse.class);
         if(response.getLightProperties() != null && response.getLightProperties().length > 0){
             return new Light(response.getName(), response.getCreationDate(), response.getInstanceId(), response.getLightProperties()[0], coapClient);
+        }else if(response.getPlugProperties() != null && response.getPlugProperties().length > 0){
+            return new Plug(response.getName(), response.getCreationDate(), response.getInstanceId(), response.getPlugProperties()[0], coapClient);
         }else{
             return new Device(response.getName(), response.getCreationDate(), response.getInstanceId()) {
                 @Override

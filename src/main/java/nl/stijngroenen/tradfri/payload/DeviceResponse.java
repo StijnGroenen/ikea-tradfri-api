@@ -3,6 +3,7 @@ package nl.stijngroenen.tradfri.payload;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import nl.stijngroenen.tradfri.device.LightProperties;
+import nl.stijngroenen.tradfri.device.PlugProperties;
 import nl.stijngroenen.tradfri.util.ApiCode;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -20,6 +21,9 @@ public class DeviceResponse {
     @JsonProperty(ApiCode.LIGHT)
     private LightProperties[] lightProperties;
 
+    @JsonProperty(ApiCode.PLUG)
+    private PlugProperties[] plugProperties;
+
     public String getName() {
         return this.name;
     }
@@ -36,6 +40,10 @@ public class DeviceResponse {
         return this.lightProperties;
     }
 
+    public PlugProperties[] getPlugProperties() {
+        return this.plugProperties;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -50,5 +58,9 @@ public class DeviceResponse {
 
     public void setLightProperties(LightProperties[] lightProperties) {
         this.lightProperties = lightProperties;
+    }
+
+    public void setPlugProperties(PlugProperties[] plugProperties) {
+        this.plugProperties = plugProperties;
     }
 }

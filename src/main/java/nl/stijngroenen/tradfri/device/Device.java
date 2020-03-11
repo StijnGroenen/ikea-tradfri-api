@@ -23,6 +23,13 @@ public abstract class Device {
         return null;
     }
 
+    public Plug toPlug(){
+        if(this.getClass() == Plug.class){
+            return (Plug) this;
+        }
+        return null;
+    }
+
     public String getName() {
         return this.name;
     }
