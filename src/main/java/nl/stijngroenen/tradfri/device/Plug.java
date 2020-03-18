@@ -10,13 +10,20 @@ public class Plug extends Device {
 
     private PlugProperties newProperties;
 
-    private CoapClient coapClient;
-
     public Plug(String name, Long creationDate, Integer instanceId, PlugProperties properties, CoapClient coapClient){
-        super(name, creationDate, instanceId);
+        super(name, creationDate, instanceId, coapClient);
         this.properties = properties;
         this.newProperties = new PlugProperties();
-        this.coapClient = coapClient;
+    }
+
+    @Override
+    public PlugProperties getProperties(){
+        return this.properties;
+    }
+
+    @Override
+    public void setProperties(DeviceProperties properties){
+        if(properties.getClass() == PlugProperties.class) this.properties = (PlugProperties) properties;
     }
 
     public Boolean getOn() {

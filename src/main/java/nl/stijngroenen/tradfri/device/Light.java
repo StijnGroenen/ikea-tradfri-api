@@ -10,13 +10,20 @@ public class Light extends Device {
 
     private LightProperties newProperties;
 
-    private CoapClient coapClient;
-
     public Light(String name, Long creationDate, Integer instanceId, LightProperties properties, CoapClient coapClient){
-        super(name, creationDate, instanceId);
+        super(name, creationDate, instanceId, coapClient);
         this.properties = properties;
         this.newProperties = new LightProperties();
-        this.coapClient = coapClient;
+    }
+
+    @Override
+    public LightProperties getProperties(){
+        return this.properties;
+    }
+
+    @Override
+    public void setProperties(DeviceProperties properties){
+        if(properties.getClass() == LightProperties.class) this.properties = (LightProperties) properties;
     }
 
     public Boolean getOn() {

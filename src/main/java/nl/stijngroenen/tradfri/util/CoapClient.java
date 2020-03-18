@@ -2,6 +2,8 @@ package nl.stijngroenen.tradfri.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.eclipse.californium.core.CoapHandler;
+import org.eclipse.californium.core.CoapObserveRelation;
 import org.eclipse.californium.core.coap.MediaTypeRegistry;
 import org.eclipse.californium.core.coap.Request;
 import org.eclipse.californium.core.coap.Response;
@@ -76,6 +78,15 @@ public class CoapClient {
         } catch (IOException e) {
             return null;
         }
+    }
+
+    public CoapObserveRelation requestObserve(String endpoint, CoapHandler handler) {
+        org.eclipse.californium.core.CoapClient client = new org.eclipse.californium.core.CoapClient();
+        Request request = Request.newGet();
+        request.setURI(endpoint);
+        request.setObserve();
+        CoapObserveRelation relation = client.observe(request, handler);
+        return relation;
     }
 
     public <T> T get(String endpoint, Class<T> responseType) {

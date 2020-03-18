@@ -59,12 +59,7 @@ public class Gateway {
         }else if(response.getPlugProperties() != null && response.getPlugProperties().length > 0){
             return new Plug(response.getName(), response.getCreationDate(), response.getInstanceId(), response.getPlugProperties()[0], coapClient);
         }else{
-            return new Device(response.getName(), response.getCreationDate(), response.getInstanceId()) {
-                @Override
-                public boolean applyUpdates() {
-                    return false;
-                }
-            };
+            return new Device(response.getName(), response.getCreationDate(), response.getInstanceId(), coapClient);
         }
     }
 
