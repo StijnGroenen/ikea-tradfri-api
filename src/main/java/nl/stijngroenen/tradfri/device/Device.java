@@ -1,7 +1,11 @@
 package nl.stijngroenen.tradfri.device;
 
+import nl.stijngroenen.tradfri.device.event.DeviceEventHandler;
 import nl.stijngroenen.tradfri.util.ApiEndpoint;
 import nl.stijngroenen.tradfri.util.CoapClient;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Device {
 
@@ -17,11 +21,14 @@ public class Device {
 
     private DeviceObserver observer;
 
+    private List<DeviceEventHandler> eventHandlers;
+
     public Device(String name, Long creationDate, Integer instanceId, CoapClient coapClient){
         this.name = name;
         this.creationDate = creationDate;
         this.instanceId = instanceId;
         this.coapClient = coapClient;
+        this.eventHandlers = new ArrayList<>();
     }
 
     public String getName() {
@@ -72,6 +79,18 @@ public class Device {
     public boolean disableObserve() {
         if(observer == null) return false;
         return observer.stop();
+    }
+
+    public List<DeviceEventHandler> getEventHandlers(){
+        return eventHandlers;
+    }
+
+    public void addEventHandler(DeviceEventHandler eventHandler){
+        this.eventHandlers.add(eventHandler);
+    }
+
+    public void removeEventHandler(DeviceEventHandler eventHandler){
+        this.eventHandlers.remove(eventHandler);
     }
 
     public boolean isLight(){
