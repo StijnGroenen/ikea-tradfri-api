@@ -23,7 +23,7 @@ public class Light extends Device {
 
     @Override
     public void setProperties(DeviceProperties properties){
-        if(properties.getClass() == LightProperties.class) this.properties = (LightProperties) properties;
+        if(properties instanceof LightProperties) this.properties = (LightProperties) properties;
     }
 
     public Boolean getOn() {

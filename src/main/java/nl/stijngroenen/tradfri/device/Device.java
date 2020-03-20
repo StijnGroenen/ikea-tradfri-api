@@ -91,24 +91,20 @@ public class Device {
     }
 
     public boolean isLight(){
-        return this.getClass() == Light.class;
+        return this instanceof Light;
     }
 
     public Light toLight(){
-        if(this.getClass() == Light.class){
-            return (Light) this;
-        }
+        if(isLight()) return (Light) this;
         return null;
     }
 
     public boolean isPlug(){
-        return this.getClass() == Plug.class;
+        return this instanceof Plug;
     }
 
     public Plug toPlug(){
-        if(this.getClass() == Plug.class){
-            return (Plug) this;
-        }
+        if(isPlug()) return (Plug) this;
         return null;
     }
 

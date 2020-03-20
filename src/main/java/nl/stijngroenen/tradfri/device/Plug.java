@@ -23,7 +23,7 @@ public class Plug extends Device {
 
     @Override
     public void setProperties(DeviceProperties properties){
-        if(properties.getClass() == PlugProperties.class) this.properties = (PlugProperties) properties;
+        if(properties instanceof PlugProperties) this.properties = (PlugProperties) properties;
     }
 
     public Boolean getOn() {
