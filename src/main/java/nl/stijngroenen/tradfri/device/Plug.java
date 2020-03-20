@@ -47,7 +47,6 @@ public class Plug extends Device {
         return response != null;
     }
 
-    @Override
     public boolean applyUpdates() {
         boolean success = applyUpdate(newProperties);
         newProperties = new PlugProperties();

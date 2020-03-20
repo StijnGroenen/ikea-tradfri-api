@@ -67,9 +67,6 @@ public class Device {
         return ApiEndpoint.getUri(ApiEndpoint.DEVICES, String.valueOf(getInstanceId()));
     }
 
-    public boolean applyUpdates(){
-        return false;
-    }
 
     public boolean enableObserve() {
         if(observer == null) observer = new DeviceObserver(this, this.coapClient);

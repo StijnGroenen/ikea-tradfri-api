@@ -198,7 +198,6 @@ public class Light extends Device {
         return response != null;
     }
 
-    @Override
     public boolean applyUpdates() {
         boolean success = applyUpdate(newProperties);
         newProperties = new LightProperties();
