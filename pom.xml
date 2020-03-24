@@ -6,7 +6,7 @@
 
     <groupId>nl.stijngroenen</groupId>
     <artifactId>ikea-tradfri-api</artifactId>
-    <version>1.0</version>
+    <version>1.0.0</version>
 
     <dependencies>
         <dependency>
@@ -35,5 +35,18 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <show>public</show>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

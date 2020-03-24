@@ -17,18 +17,50 @@ import org.eclipse.californium.scandium.dtls.pskstore.InMemoryPskStore;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
+/**
+ * The class that is used to communicate with the IKEA TRÅDFRI gateway using the CoAP protocol
+ * @author Stijn Groenen
+ * @version 1.0.0
+ */
 public class CoapClient {
 
+    /**
+     * An object mapper used for mapping JSON responses from the IKEA TRÅDFRI gateway to Java classes
+     */
     private ObjectMapper objectMapper;
 
+    /**
+     * The credentials used to authenticate the CoAP client to the IKEA TRÅDFRI gateway
+     */
     private Credentials credentials;
 
+    /**
+     * A DTLS endpoint used to secure the connection between the CoAP client and the IKEA TRÅDFRI gateway
+     */
     private Endpoint dtlsEndpoint;
 
+    /**
+     * Construct the CoapClient class
+     * @since 1.0.0
+     */
     public CoapClient(){
         objectMapper = new ObjectMapper();
     }
 
+    /**
+     * Get the credentials used to communicate with the IKEA TRÅDFRI gateway
+     * @return The credentials that can be used to authenticate to the IKEA TRÅDFRI gateway
+     * @since 1.0.0
+     */
+    public Credentials getCredentials() {
+        return this.credentials;
+    }
+
+    /**
+     * Change the credentials used to communicate with the IKEA TRÅDFRI gateway
+     * @param credentials The new credentials that can be used to authenticate to the IKEA TRÅDFRI gateway
+     * @since 1.0.0
+     */
     public void setCredentials(Credentials credentials){
         this.credentials = credentials;
         try {
@@ -36,6 +68,11 @@ public class CoapClient {
         } catch (IOException ignored) { }
     }
 
+    /**
+     * Set up a secure connection between the CoAP client and the IKEA TRÅDFRI gateway
+     * @throws IOException Thrown if a failure to open a connection between the CoAP client and the IKEA TRÅDFRI gateway occurs
+     * @since 1.0.0
+     */
     private void updateDtlsConnector() throws IOException {
         if(dtlsEndpoint != null) dtlsEndpoint.destroy();
         DtlsConnectorConfig.Builder builder = new DtlsConnectorConfig.Builder();
@@ -55,6 +92,15 @@ public class CoapClient {
         EndpointManager.getEndpointManager().setDefaultEndpoint(dtlsEndpoint);
     }
 
+    /**
+     * Make a CoAP request to the specified endpoint
+     * @param request The Request object
+     * @param endpoint The endpoint to make a request to
+     * @param responseType The expected type of response
+     * @param <T> The expected type of response
+     * @return The response from the IKEA TRÅDFRI gateway (converted to the expected response type)
+     * @since 1.0.0
+     */
     private <T> T request(Request request, String endpoint, Class<T> responseType) {
         try {
             request.setURI(endpoint);
@@ -69,6 +115,16 @@ public class CoapClient {
         }
     }
 
+    /**
+     * Make a CoAP request with a payload to the specified endpoint
+     * @param request The Request object
+     * @param endpoint The endpoint to make a request to
+     * @param payload The payload to send in the request
+     * @param responseType The expected type of response
+     * @param <T> The expected type of response
+     * @return The response from the IKEA TRÅDFRI gateway (converted to the expected response type)
+     * @since 1.0.0
+     */
     private <T> T requestWithPayload(Request request, String endpoint, Object payload, Class<T> responseType) {
         try {
             String requestPayload = objectMapper.writeValueAsString(payload);
@@ -80,6 +136,13 @@ public class CoapClient {
         }
     }
 
+    /**
+     * Make a CoAP observe request to the specified endpoint
+     * @param endpoint The endpoint to make a request to
+     * @param handler The handler to handle the responses from the observe request
+     * @return The observe relation that represents the connection to the IKEA TRÅDFRI gateway
+     * @since 1.0.0
+     */
     public CoapObserveRelation requestObserve(String endpoint, CoapHandler handler) {
         org.eclipse.californium.core.CoapClient client = new org.eclipse.californium.core.CoapClient();
         Request request = Request.newGet();
@@ -89,22 +152,45 @@ public class CoapClient {
         return relation;
     }
 
+    /**
+     * Make a CoAP GET request to the specified endpoint
+     * @param endpoint The endpoint to make a request to
+     * @param responseType The expected type of response
+     * @param <T> The expected type of response
+     * @return The response from the IKEA TRÅDFRI gateway (converted to the expected response type)
+     * @since 1.0.0
+     */
     public <T> T get(String endpoint, Class<T> responseType) {
         Request request = Request.newGet();
         return request(request, endpoint, responseType);
     }
 
+    /**
+     * Make a CoAP POST request with a payload to the specified endpoint
+     * @param endpoint The endpoint to make a request to
+     * @param payload The payload to send in the request
+     * @param responseType The expected type of response
+     * @param <T> The expected type of response
+     * @return The response from the IKEA TRÅDFRI gateway (converted to the expected response type)
+     * @since 1.0.0
+     */
     public <T> T post(String endpoint, Object payload, Class<T> responseType) {
         Request request = Request.newPost();
         return requestWithPayload(request, endpoint, payload, responseType);
     }
 
+    /**
+     * Make a CoAP PUT request with a payload to the specified endpoint
+     * @param endpoint The endpoint to make a request to
+     * @param payload The payload to send in the request
+     * @param responseType The expected type of response
+     * @param <T> The expected type of response
+     * @return The response from the IKEA TRÅDFRI gateway (converted to the expected response type)
+     * @since 1.0.0
+     */
     public <T> T put(String endpoint, Object payload, Class<T> responseType) {
         Request request = Request.newPut();
         return requestWithPayload(request, endpoint, payload, responseType);
     }
 
-    public Credentials getCredentials() {
-        return this.credentials;
-    }
 }

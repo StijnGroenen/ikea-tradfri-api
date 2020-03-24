@@ -11,22 +11,50 @@ import org.eclipse.californium.core.CoapResponse;
 
 import java.util.ArrayList;
 
+/**
+ * The class that observes a device to automagically detect changes
+ * @author Stijn Groenen
+ * @version 1.0.0
+ */
 public class DeviceObserver implements CoapHandler {
 
+    /**
+     * The device to observe
+     */
     private Device device;
 
+    /**
+     * A CoAP client that can be used to communicate with the device using the IKEA TRÅDFRI gateway
+     */
     private CoapClient coapClient;
 
+    /**
+     * The observe relation used by CoAP to keep track of the connection to the IKEA TRÅDFRI gateway
+     */
     private CoapObserveRelation coapObserveRelation;
 
+    /**
+     * An object mapper used for mapping JSON responses from the IKEA TRÅDFRI gateway to Java classes
+     */
     private ObjectMapper objectMapper;
 
+    /**
+     * Construct the DeviceObserver class
+     * @param device The device to observe
+     * @param coapClient A CoAP client that can be used to communicate with the device using the IKEA TRÅDFRI gateway
+     * @since 1.0.0
+     */
     public DeviceObserver(Device device, CoapClient coapClient) {
         this.device = device;
         this.coapClient = coapClient;
         this.objectMapper = new ObjectMapper();
     }
 
+    /**
+     * Start observing the device to automagically detect changes
+     * @return True if successfully started observing, false if not
+     * @since 1.0.0
+     */
     public boolean start(){
         if(coapObserveRelation == null || coapObserveRelation.isCanceled()){
             coapObserveRelation = coapClient.requestObserve(device.getEndpoint(), this);
@@ -35,6 +63,11 @@ public class DeviceObserver implements CoapHandler {
         return false;
     }
 
+    /**
+     * Stop observing the device
+     * @return True if successfully stopped observing, false if not
+     * @since 1.0.0
+     */
     public boolean stop(){
         if(coapObserveRelation != null && !coapObserveRelation.isCanceled()){
             coapObserveRelation.proactiveCancel();
@@ -43,10 +76,22 @@ public class DeviceObserver implements CoapHandler {
         return false;
     }
 
+    /**
+     * Check if there is a difference between the old value and the new value
+     * @param oldValue The old value
+     * @param newValue The new value
+     * @return True if there is a difference between the old value and the new value, false if they are the same
+     * @since 1.0.0
+     */
     private boolean checkChanges(Object oldValue, Object newValue){
         return ((oldValue == null && newValue != null) || (newValue == null && oldValue != null) || (oldValue != null && !oldValue.equals(newValue)));
     }
 
+    /**
+     * Handles a new response from the CoAP client and calls the appropriate event handlers for the device
+     * @param coapResponse The response to the CoAP request
+     * @since 1.0.0
+     */
     @Override
     public void onLoad(CoapResponse coapResponse) {
         try {
@@ -92,6 +137,10 @@ public class DeviceObserver implements CoapHandler {
         } catch (JsonProcessingException ignored) { }
     }
 
+    /**
+     * Handles an error from the CoAP client
+     * @since 1.0.0
+     */
     @Override
     public void onError() {
 
