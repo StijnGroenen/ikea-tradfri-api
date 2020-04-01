@@ -21,8 +21,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.stijngroenen.tradfri.device.event.*;
 import nl.stijngroenen.tradfri.payload.DeviceResponse;
 import nl.stijngroenen.tradfri.util.CoapClient;
-import org.eclipse.californium.core.CoapHandler;
-import org.eclipse.californium.core.CoapObserveRelation;
 import org.eclipse.californium.core.CoapResponse;
 
 import java.util.ArrayList;
@@ -32,22 +30,12 @@ import java.util.ArrayList;
  * @author Stijn Groenen
  * @version 1.0.0
  */
-public class DeviceObserver implements CoapHandler {
+public class DeviceObserver extends Observer {
 
     /**
      * The device to observe
      */
     private Device device;
-
-    /**
-     * A CoAP client that can be used to communicate with the device using the IKEA TRÅDFRI gateway
-     */
-    private CoapClient coapClient;
-
-    /**
-     * The observe relation used by CoAP to keep track of the connection to the IKEA TRÅDFRI gateway
-     */
-    private CoapObserveRelation coapObserveRelation;
 
     /**
      * An object mapper used for mapping JSON responses from the IKEA TRÅDFRI gateway to Java classes
@@ -61,59 +49,22 @@ public class DeviceObserver implements CoapHandler {
      * @since 1.0.0
      */
     public DeviceObserver(Device device, CoapClient coapClient) {
+        super(device.getEndpoint(), coapClient);
         this.device = device;
-        this.coapClient = coapClient;
         this.objectMapper = new ObjectMapper();
     }
 
     /**
-     * Start observing the device to automagically detect changes
-     * @return True if successfully started observing, false if not
-     * @since 1.0.0
-     */
-    public boolean start(){
-        if(coapObserveRelation == null || coapObserveRelation.isCanceled()){
-            coapObserveRelation = coapClient.requestObserve(device.getEndpoint(), this);
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Stop observing the device
-     * @return True if successfully stopped observing, false if not
-     * @since 1.0.0
-     */
-    public boolean stop(){
-        if(coapObserveRelation != null && !coapObserveRelation.isCanceled()){
-            coapObserveRelation.proactiveCancel();
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Check if there is a difference between the old value and the new value
-     * @param oldValue The old value
-     * @param newValue The new value
-     * @return True if there is a difference between the old value and the new value, false if they are the same
-     * @since 1.0.0
-     */
-    private boolean checkChanges(Object oldValue, Object newValue){
-        return ((oldValue == null && newValue != null) || (newValue == null && oldValue != null) || (oldValue != null && !oldValue.equals(newValue)));
-    }
-
-    /**
      * Handles a new response from the CoAP client and calls the appropriate event handlers for the device
-     * @param coapResponse The response to the CoAP request
+     * @param payload The payload of the response to the CoAP request
      * @since 1.0.0
      */
     @Override
-    public void onLoad(CoapResponse coapResponse) {
+    public void callEventHandlers(String payload) {
         try {
-            DeviceResponse response = objectMapper.readValue(coapResponse.getResponseText(), DeviceResponse.class);
+            DeviceResponse response = objectMapper.readValue(payload, DeviceResponse.class);
             ArrayList<DeviceEvent> events = new ArrayList<>();
-            ArrayList<DeviceEventHandler> called = new ArrayList<>();
+            ArrayList<EventHandler> called = new ArrayList<>();
             if(device.isLight()){
                 LightProperties oldProperties = (LightProperties) device.getProperties();
                 if(response.getLightProperties() != null && response.getLightProperties().length > 0) device.setProperties(response.getLightProperties()[0]);
@@ -142,7 +93,7 @@ public class DeviceObserver implements CoapHandler {
                     events.add(new PlugChangeOnEvent(device.toPlug(), oldProperties, newProperties));
                 }
             }
-            for(DeviceEventHandler eventHandler: device.getEventHandlers()){
+            for(EventHandler eventHandler: device.getEventHandlers()){
                 for(DeviceEvent event: events){
                     if(eventHandler.getEventType().isAssignableFrom(event.getClass()) && !called.contains(eventHandler)){
                         eventHandler.handle(event);
@@ -151,15 +102,6 @@ public class DeviceObserver implements CoapHandler {
                 }
             }
         } catch (JsonProcessingException ignored) { }
-    }
-
-    /**
-     * Handles an error from the CoAP client
-     * @since 1.0.0
-     */
-    @Override
-    public void onError() {
-
     }
 
 }

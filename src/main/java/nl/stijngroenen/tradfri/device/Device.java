@@ -16,7 +16,7 @@
 
 package nl.stijngroenen.tradfri.device;
 
-import nl.stijngroenen.tradfri.device.event.DeviceEventHandler;
+import nl.stijngroenen.tradfri.device.event.EventHandler;
 import nl.stijngroenen.tradfri.util.ApiEndpoint;
 import nl.stijngroenen.tradfri.util.CoapClient;
 
@@ -63,7 +63,7 @@ public class Device {
     /**
      * The event handlers registered for the device
      */
-    private List<DeviceEventHandler> eventHandlers;
+    private List<EventHandler> eventHandlers;
 
     /**
      * Construct the Device class
@@ -187,7 +187,7 @@ public class Device {
      * @return A list of event handlers for the device
      * @since 1.0.0
      */
-    public List<DeviceEventHandler> getEventHandlers(){
+    public List<EventHandler> getEventHandlers(){
         return eventHandlers;
     }
 
@@ -196,7 +196,7 @@ public class Device {
      * @param eventHandler The event handler to add to the device
      *                     @since 1.0.0
      */
-    public void addEventHandler(DeviceEventHandler eventHandler){
+    public void addEventHandler(EventHandler eventHandler){
         this.eventHandlers.add(eventHandler);
     }
 
@@ -205,7 +205,7 @@ public class Device {
      * @param eventHandler The event handler to remove from the device
      * @since 1.0.0
      */
-    public void removeEventHandler(DeviceEventHandler eventHandler){
+    public void removeEventHandler(EventHandler eventHandler){
         this.eventHandlers.remove(eventHandler);
     }
 

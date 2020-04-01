@@ -17,36 +17,47 @@
 package nl.stijngroenen.tradfri.device.event;
 
 import nl.stijngroenen.tradfri.device.Device;
+import nl.stijngroenen.tradfri.device.Gateway;
 
 /**
- * The class that represents a device event that occurred to an IKEA TRÅDFRI device
+ * The class that represents a device added event that occurred to an IKEA TRÅDFRI gateway
  * @author Stijn Groenen
  * @version 1.0.0
  */
-public class DeviceEvent extends Event {
+public class DeviceAddedEvent extends GatewayEvent {
 
     /**
-     * The device for which the event occurred
+     * The added device for which the event occurred
      */
     private Device device;
 
     /**
-     * Construct the DeviceEvent class
-     * @param device The device for which the event occurred
+     * Construct the DeviceAddedEvent class
+     * @param gateway The IKEA TRÅDFRI gateway for which the event occurred
+     * @param device The added device for which the event occurred
      * @since 1.0.0
      */
-    public DeviceEvent(Device device) {
-        super();
+    public DeviceAddedEvent(Gateway gateway, Device device) {
+        super(gateway);
         this.device = device;
     }
 
     /**
-     * Get the device for which the event occurred
-     * @return The device for which the event occurred
+     * Get the added device for which the event occurred
+     * @return The added device for which the event occurred
      * @since 1.0.0
      */
     public Device getDevice(){
         return this.device;
+    }
+
+    /**
+     * Get the id of the added device for which the event occurred
+     * @return The id of the added device for which the event occurred
+     * @since 1.0.0
+     */
+    public int getDeviceId(){
+        return this.device.getInstanceId();
     }
 
 }

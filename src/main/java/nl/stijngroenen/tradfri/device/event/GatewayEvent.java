@@ -16,37 +16,37 @@
 
 package nl.stijngroenen.tradfri.device.event;
 
-import nl.stijngroenen.tradfri.device.Device;
+import nl.stijngroenen.tradfri.device.Gateway;
 
 /**
- * The class that represents a device event that occurred to an IKEA TRÅDFRI device
+ * The class that represents an event that occurred to an IKEA TRÅDFRI gateway
  * @author Stijn Groenen
  * @version 1.0.0
  */
-public class DeviceEvent extends Event {
+public class GatewayEvent extends Event {
 
     /**
-     * The device for which the event occurred
+     * The IKEA TRÅDFRI gateway for which the event occurred
      */
-    private Device device;
+    private Gateway gateway;
 
     /**
-     * Construct the DeviceEvent class
-     * @param device The device for which the event occurred
+     * Construct the GatewayEvent class
+     * @param gateway The IKEA TRÅDFRI gateway for which the event occurred
      * @since 1.0.0
      */
-    public DeviceEvent(Device device) {
+    public GatewayEvent(Gateway gateway) {
         super();
-        this.device = device;
+        this.gateway = gateway;
     }
 
     /**
-     * Get the device for which the event occurred
-     * @return The device for which the event occurred
+     * Get the IKEA TRÅDFRI gateway for which the event occurred
+     * @return The IKEA TRÅDFRI gateway for which the event occurred
      * @since 1.0.0
      */
-    public Device getDevice(){
-        return this.device;
+    public Gateway getGateway(){
+        return this.gateway;
     }
 
 }

@@ -196,32 +196,60 @@ if(device.isPlug()){
 
 #### Available events
 
-| Device Type | Event                              | Description                                    |
-| ----------- | ---------------------------------- | ---------------------------------------------- |
-|             | DeviceEvent                        | The parent event for all other events          |
-| **Lights**  | LightEvent                         | An event occurred for the light                |
-|             | LightChangeEvent                   | The light changed                              |
-|             | LightChangeOnEvent                 | The on / off state of the light changed        |
-|             | LightChangeBrightnessEvent         | The brightness of the light changed            |
-|             | LightChangeColourHexEvent          | The hexadecimal colour of the light changed    |
-|             | LightChangeHueEvent                | The hue of the light changed                   |
-|             | LightChangeSaturationEvent         | The saturation of the light changed            |
-|             | LightChangeColourXEvent            | The X value of the colour of the light changed |
-|             | LightChangeColourYEvent            | The Y value of the colour of the light changed |
-|             | LightChangeColourTemeperatureEvent | The brightness of the light changed            |
-| **Plug**    | PlugEvent                          | An event occurred for the plug                 |
-|             | PlugChangeEvent                    | The plug changed                               |
-|             | PlugChangeOnEvent                  | The on / off state of the light changed        |
+| Device Type | Event                              | Description                                       |
+| ----------- | ---------------------------------- | ------------------------------------------------- |
+|             | Event                              | The parent event for all other events             |
+|             | DeviceEvent                        | The parent event for all device events            |
+| **Gateway** | GatewayEvent                       | The parent event for all gateway events           |
+|             | DeviceAddedEvent                   | A new device is added to the IKEA TRÅDFRI gateway |
+|             | DeviceRemoveEvent                  | A device is removed from the IKEA TRÅDFRI gateway |
+| **Lights**  | LightEvent                         | An event occurred for the light                   |
+|             | LightChangeEvent                   | The light changed                                 |
+|             | LightChangeOnEvent                 | The on / off state of the light changed           |
+|             | LightChangeBrightnessEvent         | The brightness of the light changed               |
+|             | LightChangeColourHexEvent          | The hexadecimal colour of the light changed       |
+|             | LightChangeHueEvent                | The hue of the light changed                      |
+|             | LightChangeSaturationEvent         | The saturation of the light changed               |
+|             | LightChangeColourXEvent            | The X value of the colour of the light changed    |
+|             | LightChangeColourYEvent            | The Y value of the colour of the light changed    |
+|             | LightChangeColourTemeperatureEvent | The brightness of the light changed               |
+| **Plug**    | PlugEvent                          | An event occurred for the plug                    |
+|             | PlugChangeEvent                    | The plug changed                                  |
+|             | PlugChangeOnEvent                  | The on / off state of the light changed           |
+
+
+
+#### Add an event handler to the IKEA TRÅDFRI gateway
+
+Import the EventHandler class and the DeviceAddedEvent class:
+
+```Java
+import nl.stijngroenen.tradfri.device.event.EventHandler;
+import nl.stijngroenen.tradfri.device.event.DeviceAddedEvent;
+```
+
+A new device is added to the IKEA TRÅDFRI gateway:
+
+```Java
+EventHandler<DeviceAddedEvent> eventHandler = new EventHandler<DeviceAddedEvent>() {
+    @Override
+    public void handle(DeviceAddedEvent event){
+        System.out.println("A new device is added: "+event.getDevice().getName());
+    }
+};
+gateway.enableObserve(); // This is necessary for the event handler to work.
+gateway.addEventHandler(eventHandler);
+```
 
 
 
 #### Add an event handler to a device
 
-Import the Device class, the DeviceEventHandler class and the LightChangeOnEvent class:
+Import the Device class, the EventHandler class and the LightChangeOnEvent class:
 
 ```Java
 import nl.stijngroenen.tradfri.device.Device;
-import nl.stijngroenen.tradfri.device.event.DeviceEventHandler;
+import nl.stijngroenen.tradfri.device.event.EventHandler;
 import nl.stijngroenen.tradfri.device.event.LightChangeOnEvent;
 ```
 
@@ -230,7 +258,7 @@ Replace 'ID' with the id of the light.
 
 ```Java
 Device device = gateway.getDevice(ID);
-DeviceEventHandler<LightChangeOnEvent> eventHandler = new DeviceEventHandler<LightChangeOnEvent>() {
+EventHandler<LightChangeOnEvent> eventHandler = new EventHandler<LightChangeOnEvent>() {
     @Override
     public void handle(LightChangeOnEvent event){
         System.out.println("The light is "+(event.getNewOn() ? "on" : "off"));

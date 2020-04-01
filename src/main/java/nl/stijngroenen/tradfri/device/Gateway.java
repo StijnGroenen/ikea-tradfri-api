@@ -16,6 +16,7 @@
 
 package nl.stijngroenen.tradfri.device;
 
+import nl.stijngroenen.tradfri.device.event.EventHandler;
 import nl.stijngroenen.tradfri.payload.AuthenticateRequest;
 import nl.stijngroenen.tradfri.payload.AuthenticateResponse;
 import nl.stijngroenen.tradfri.payload.DeviceResponse;
@@ -25,6 +26,7 @@ import nl.stijngroenen.tradfri.util.Credentials;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The class that is used to communicate with the IKEA TRÅDFRI gateway
@@ -39,6 +41,16 @@ public class Gateway {
     private CoapClient coapClient;
 
     /**
+     * The observer that observes the IKEA TRÅDFRI gateway to automagically detect changes
+     */
+    private GatewayObserver observer;
+
+    /**
+     * The event handlers registered for the device
+     */
+    private List<EventHandler> eventHandlers;
+
+    /**
      * Construct the Gateway class
      * @param ip The IP-address of the IKEA TRÅDFRI gateway
      * @since 1.0.0
@@ -46,6 +58,7 @@ public class Gateway {
     public Gateway(String ip) {
         ApiEndpoint.setGatewayIp(ip);
         coapClient = new CoapClient();
+        eventHandlers = new ArrayList<>();
     }
 
     /**
@@ -122,7 +135,9 @@ public class Gateway {
      */
     public Device getDevice(int id){
         DeviceResponse response = coapClient.get(ApiEndpoint.getUri(ApiEndpoint.DEVICES, String.valueOf(id)), DeviceResponse.class);
-        if(response.getLightProperties() != null && response.getLightProperties().length > 0){
+        if(response == null){
+            return null;
+        }else if(response.getLightProperties() != null && response.getLightProperties().length > 0){
             return new Light(response.getName(), response.getCreationDate(), response.getInstanceId(), response.getLightProperties()[0], coapClient);
         }else if(response.getPlugProperties() != null && response.getPlugProperties().length > 0){
             return new Plug(response.getName(), response.getCreationDate(), response.getInstanceId(), response.getPlugProperties()[0], coapClient);
@@ -146,6 +161,53 @@ public class Gateway {
         Device[] devices = new Device[deviceList.size()];
         deviceList.toArray(devices);
         return devices;
+    }
+
+    /**
+     * Enable observe to automagically detect changes to the device
+     * @return True if successfully enabled observe, false if not
+     * @since 1.0.0
+     */
+    public boolean enableObserve() {
+        if(observer == null) observer = new GatewayObserver(this, this.coapClient);
+        return observer.start();
+    }
+
+    /**
+     * Disable observe
+     * @return True if successfully disabled observe, false if not
+     * @since 1.0.0
+     */
+    public boolean disableObserve() {
+        if(observer == null) return false;
+        return observer.stop();
+    }
+
+    /**
+     * Get a list of event handlers for the IKEA TRÅDFRI gateway
+     * @return A list of event handlers for the IKEA TRÅDFRI gateway
+     * @since 1.0.0
+     */
+    public List<EventHandler> getEventHandlers(){
+        return eventHandlers;
+    }
+
+    /**
+     * Add an event handler to the IKEA TRÅDFRI gateway
+     * @param eventHandler The event handler to add to the IKEA TRÅDFRI gateway
+     *                     @since 1.0.0
+     */
+    public void addEventHandler(EventHandler eventHandler){
+        this.eventHandlers.add(eventHandler);
+    }
+
+    /**
+     * Remove an event handler from the IKEA TRÅDFRI gateway
+     * @param eventHandler The event handler to remove from the IKEA TRÅDFRI gateway
+     * @since 1.0.0
+     */
+    public void removeEventHandler(EventHandler eventHandler){
+        this.eventHandlers.remove(eventHandler);
     }
 
 }

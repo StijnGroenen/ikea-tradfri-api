@@ -16,37 +16,35 @@
 
 package nl.stijngroenen.tradfri.device.event;
 
-import nl.stijngroenen.tradfri.device.Device;
+import java.lang.reflect.ParameterizedType;
 
 /**
- * The class that represents a device event that occurred to an IKEA TRÅDFRI device
+ * The class that handles events for IKEA TRÅDFRI devices
  * @author Stijn Groenen
  * @version 1.0.0
  */
-public class DeviceEvent extends Event {
+public abstract class EventHandler<T extends Event> {
 
     /**
-     * The device for which the event occurred
-     */
-    private Device device;
-
-    /**
-     * Construct the DeviceEvent class
-     * @param device The device for which the event occurred
+     * Construct the EventHandler class
      * @since 1.0.0
      */
-    public DeviceEvent(Device device) {
-        super();
-        this.device = device;
+    public EventHandler(){
     }
 
     /**
-     * Get the device for which the event occurred
-     * @return The device for which the event occurred
+     * Handle the event
+     * @param event The event that occurred
      * @since 1.0.0
      */
-    public Device getDevice(){
-        return this.device;
+    public abstract void handle(T event);
+
+    /**
+     * Get the class of the event that this event handler handles
+     * @return The class of the event that this event handler handles
+     */
+    public Class<T> getEventType(){
+        return (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
 }
