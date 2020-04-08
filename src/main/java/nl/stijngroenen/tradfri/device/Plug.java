@@ -42,12 +42,13 @@ public class Plug extends Device {
      * @param name The name of the plug
      * @param creationDate The creation date of the plug
      * @param instanceId The instance id of the plug
+     * @param deviceInfo The information of the device
      * @param properties The properties of the plug
      * @param coapClient A CoAP client that can be used to communicate with the plug using the IKEA TRÅDFRI gateway
      * @since 1.0.0
      */
-    public Plug(String name, Long creationDate, Integer instanceId, PlugProperties properties, CoapClient coapClient){
-        super(name, creationDate, instanceId, coapClient);
+    public Plug(String name, Long creationDate, Integer instanceId, DeviceInfo deviceInfo, PlugProperties properties, CoapClient coapClient){
+        super(name, creationDate, instanceId, deviceInfo, coapClient);
         this.properties = properties;
         this.newProperties = new PlugProperties();
     }

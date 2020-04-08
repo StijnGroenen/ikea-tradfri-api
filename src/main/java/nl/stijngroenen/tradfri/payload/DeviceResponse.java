@@ -18,6 +18,7 @@ package nl.stijngroenen.tradfri.payload;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import nl.stijngroenen.tradfri.device.DeviceInfo;
 import nl.stijngroenen.tradfri.device.LightProperties;
 import nl.stijngroenen.tradfri.device.PlugProperties;
 import nl.stijngroenen.tradfri.util.ApiCode;
@@ -47,6 +48,12 @@ public class DeviceResponse {
      */
     @JsonProperty(ApiCode.INSTANCE_ID)
     private Integer instanceId;
+
+    /**
+     * The information of the device
+     */
+    @JsonProperty(ApiCode.DEVICE_INFORMATION)
+    private DeviceInfo deviceInfo;
 
     /**
      * The properties of the light (if the device is a light)
@@ -95,6 +102,15 @@ public class DeviceResponse {
     }
 
     /**
+     * Get the information of the device
+     * @return The instance id of the device
+     * @since 1.0.0
+     */
+    public DeviceInfo getDeviceInfo() {
+        return this.deviceInfo;
+    }
+
+    /**
      * Get the properties of the light (if the device is a light)
      * @return The properties of the light
      * @since 1.0.0
@@ -137,6 +153,15 @@ public class DeviceResponse {
      */
     public void setInstanceId(Integer instanceId) {
         this.instanceId = instanceId;
+    }
+
+    /**
+     * Set the information of the device
+     * @param deviceInfo The information of the device
+     * @since 1.0.0
+     */
+    public void setDeviceInfo(DeviceInfo deviceInfo) {
+        this.deviceInfo = deviceInfo;
     }
 
     /**

@@ -46,6 +46,11 @@ public class Device {
     private Integer instanceId;
 
     /**
+     * The information of the device
+     */
+    private DeviceInfo deviceInfo;
+
+    /**
      * The properties of the device
      */
     private DeviceProperties properties;
@@ -70,13 +75,15 @@ public class Device {
      * @param name The name of the device
      * @param creationDate The creation date of the device
      * @param instanceId The instance id of the device
+     * @param deviceInfo The information of the device
      * @param coapClient A CoAP client that can be used to communicate with the device using the IKEA TRÅDFRI gateway
      * @since 1.0.0
      */
-    public Device(String name, Long creationDate, Integer instanceId, CoapClient coapClient){
+    public Device(String name, Long creationDate, Integer instanceId, DeviceInfo deviceInfo, CoapClient coapClient){
         this.name = name;
         this.creationDate = creationDate;
         this.instanceId = instanceId;
+        this.deviceInfo = deviceInfo;
         this.coapClient = coapClient;
         this.eventHandlers = new ArrayList<>();
     }
@@ -106,6 +113,15 @@ public class Device {
      */
     public Integer getInstanceId() {
         return this.instanceId;
+    }
+
+    /**
+     * Get the information of the device
+     * @return The information of the device
+     * @since 1.0.0
+     */
+    public DeviceInfo getDeviceInfo() {
+        return this.deviceInfo;
     }
 
     /**

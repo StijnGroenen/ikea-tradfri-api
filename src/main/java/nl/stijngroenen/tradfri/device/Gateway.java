@@ -138,11 +138,11 @@ public class Gateway {
         if(response == null){
             return null;
         }else if(response.getLightProperties() != null && response.getLightProperties().length > 0){
-            return new Light(response.getName(), response.getCreationDate(), response.getInstanceId(), response.getLightProperties()[0], coapClient);
+            return new Light(response.getName(), response.getCreationDate(), response.getInstanceId(), response.getDeviceInfo(), response.getLightProperties()[0], coapClient);
         }else if(response.getPlugProperties() != null && response.getPlugProperties().length > 0){
-            return new Plug(response.getName(), response.getCreationDate(), response.getInstanceId(), response.getPlugProperties()[0], coapClient);
+            return new Plug(response.getName(), response.getCreationDate(), response.getInstanceId(), response.getDeviceInfo(), response.getPlugProperties()[0], coapClient);
         }else{
-            return new Device(response.getName(), response.getCreationDate(), response.getInstanceId(), coapClient);
+            return new Device(response.getName(), response.getCreationDate(), response.getInstanceId(), response.getDeviceInfo(), coapClient);
         }
     }
 

@@ -42,12 +42,13 @@ public class Light extends Device {
      * @param name The name of the light
      * @param creationDate The creation date of the light
      * @param instanceId The instance id of the light
+     * @param deviceInfo The information of the device
      * @param properties The properties of the light
      * @param coapClient A CoAP client that can be used to communicate with the light using the IKEA TRÅDFRI gateway
      * @since 1.0.0
      */
-    public Light(String name, Long creationDate, Integer instanceId, LightProperties properties, CoapClient coapClient){
-        super(name, creationDate, instanceId, coapClient);
+    public Light(String name, Long creationDate, Integer instanceId, DeviceInfo deviceInfo, LightProperties properties, CoapClient coapClient){
+        super(name, creationDate, instanceId, deviceInfo, coapClient);
         this.properties = properties;
         this.newProperties = new LightProperties();
     }

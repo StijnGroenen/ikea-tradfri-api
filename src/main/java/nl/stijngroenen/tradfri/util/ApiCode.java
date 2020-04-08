@@ -94,6 +94,50 @@ public class ApiCode {
      */
     public static final String BLIND = "15015";
 
+    // Device Information
+
+    /**
+     * The IKEA TRÅDFRI API code for device information<br/>
+     * <i>Value: {@value}</i>
+     */
+    public static final String DEVICE_INFORMATION = "3";
+
+    /**
+     * The IKEA TRÅDFRI API code for a device manufacturer<br/>
+     * <i>Value: {@value}</i>
+     */
+    public static final String MANUFACTURER = "0";
+
+    /**
+     * The IKEA TRÅDFRI API code for a device model name<br/>
+     * <i>Value: {@value}</i>
+     */
+    public static final String MODEL_NAME = "1";
+
+    /**
+     * The IKEA TRÅDFRI API code for a device serial<br/>
+     * <i>Value: {@value}</i>
+     */
+    public static final String SERIAL = "2";
+
+    /**
+     * The IKEA TRÅDFRI API code for a device firmware version<br/>
+     * <i>Value: {@value}</i>
+     */
+    public static final String FIRMWARE_VERSION = "3";
+
+    /**
+     * The IKEA TRÅDFRI API code for a device power source<br/>
+     * <i>Value: {@value}</i>
+     */
+    public static final String POWER_SOURCE = "6";
+
+    /**
+     * The IKEA TRÅDFRI API code for a device manufacturer<br/>
+     * <i>Value: {@value}</i>
+     */
+    public static final String BATTERY_LEVEL = "9";
+
     // Lights
 
     /**
