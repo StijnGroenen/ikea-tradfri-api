@@ -224,6 +224,41 @@ public class Light extends Device {
     }
 
     /**
+     * Update the colour of the light in the update queue
+     * @param colourRed The red value of the new colour for the light
+     * @param colourGreen The green value of the new colour for the light
+     * @param colourBlue The blue value of the new colour for the light
+     * @since 1.0.0
+     */
+    public void updateColourRGB(int colourRed, int colourGreen, int colourBlue) {
+        double red = colourRed;
+        double green = colourGreen;
+        double blue = colourBlue;
+
+        red = (red > 0.04045) ? Math.pow((red + 0.055) / (1.0 + 0.055), 2.4) : (red / 12.92);
+        green = (green > 0.04045) ? Math.pow((green + 0.055) / (1.0 + 0.055), 2.4) : (green / 12.92);
+        blue = (blue > 0.04045) ? Math.pow((blue + 0.055) / (1.0 + 0.055), 2.4) : (blue / 12.92);
+
+        double X = red * 0.664511 + green * 0.154324 + blue * 0.162028;
+        double Y = red * 0.283881 + green * 0.668433 + blue * 0.047685;
+        double Z = red * 0.000088 + green * 0.072310 + blue * 0.986039;
+
+        double x = (X / (X + Y + Z));
+        double y = (Y / (X + Y + Z));
+
+        int xyX = (int) (x * 65535 + 0.5);
+        int xyY = (int) (y * 65535 + 0.5);
+
+        LightProperties newProperties = new LightProperties();
+        newProperties.setColourX(xyX);
+        newProperties.setColourY(xyY);
+        newProperties.setColourHex(null);
+        newProperties.setHue(null);
+        newProperties.setSaturation(null);
+        newProperties.setColourTemperature(null);
+    }
+
+    /**
      * Update the colour temperature of the light in the update queue
      * @param colourTemperature The new colour temperature for the light
      * @since 1.0.0
@@ -389,6 +424,51 @@ public class Light extends Device {
      */
     public boolean setColourXY(Integer colourX, Integer colourY){
         return setColourXY(colourX, colourY, null);
+    }
+
+    /**
+     * Set the colour of the light
+     * @param colourRed The red value of the new colour for the light
+     * @param colourGreen The green value of the new colour for the light
+     * @param colourBlue The blue value of the new colour for the light
+     * @param transitionTime The transition time for updating the light
+     * @since 1.0.0
+     */
+    public boolean setColourRGB(int colourRed, int colourGreen, int colourBlue, Integer transitionTime) {
+        double red = colourRed;
+        double green = colourGreen;
+        double blue = colourBlue;
+
+        red = (red > 0.04045) ? Math.pow((red + 0.055) / (1.0 + 0.055), 2.4) : (red / 12.92);
+        green = (green > 0.04045) ? Math.pow((green + 0.055) / (1.0 + 0.055), 2.4) : (green / 12.92);
+        blue = (blue > 0.04045) ? Math.pow((blue + 0.055) / (1.0 + 0.055), 2.4) : (blue / 12.92);
+
+        double X = red * 0.664511 + green * 0.154324 + blue * 0.162028;
+        double Y = red * 0.283881 + green * 0.668433 + blue * 0.047685;
+        double Z = red * 0.000088 + green * 0.072310 + blue * 0.986039;
+
+        double x = (X / (X + Y + Z));
+        double y = (Y / (X + Y + Z));
+
+        int xyX = (int) (x * 65535 + 0.5);
+        int xyY = (int) (y * 65535 + 0.5);
+
+        LightProperties newProperties = new LightProperties();
+        newProperties.setColourX(xyX);
+        newProperties.setColourY(xyY);
+        newProperties.setTransitionTime(transitionTime);
+        return applyUpdate(newProperties);
+    }
+
+    /**
+     * Set the colour of the light
+     * @param colourRed The red value of the new colour for the light
+     * @param colourGreen The green value of the new colour for the light
+     * @param colourBlue The blue value of the new colour for the light
+     * @since 1.0.0
+     */
+    public boolean setColourRGB(int colourRed, int colourGreen, int colourBlue){
+        return setColourRGB(colourRed, colourGreen, colourBlue, null);
     }
 
     /**
