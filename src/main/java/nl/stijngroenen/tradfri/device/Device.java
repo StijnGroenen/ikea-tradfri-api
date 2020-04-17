@@ -282,4 +282,23 @@ public class Device {
         return null;
     }
 
+    /**
+     * Check if the device is a {@link MotionSensor}
+     * @return True if the device is a {@link MotionSensor}, false if not
+     * @since 1.0.0
+     */
+    public boolean isMotionSensor(){
+        return this instanceof MotionSensor;
+    }
+
+    /**
+     * Convert the device to the {@link MotionSensor} class
+     * @return The device as {@link MotionSensor}
+     * @since 1.0.0
+     */
+    public MotionSensor toMotionSensor(){
+        if(isMotionSensor()) return (MotionSensor) this;
+        return null;
+    }
+
 }

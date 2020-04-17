@@ -94,6 +94,8 @@ public class DeviceObserver extends Observer {
                 }
             }else if(device.isRemote()){
                 events.add(new RemoteEvent(device.toRemote()));
+            }else if(device.isMotionSensor()){
+                events.add(new MotionSensorEvent(device.toMotionSensor()));
             }
             for(EventHandler eventHandler: device.getEventHandlers()){
                 for(DeviceEvent event: events){
