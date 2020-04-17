@@ -92,6 +92,8 @@ public class DeviceObserver extends Observer {
                     events.add(new PlugChangeEvent(device.toPlug(), oldProperties, newProperties));
                     events.add(new PlugChangeOnEvent(device.toPlug(), oldProperties, newProperties));
                 }
+            }else if(device.isRemote()){
+                events.add(new RemoteEvent(device.toRemote()));
             }
             for(EventHandler eventHandler: device.getEventHandlers()){
                 for(DeviceEvent event: events){

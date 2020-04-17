@@ -263,4 +263,23 @@ public class Device {
         return null;
     }
 
+    /**
+     * Check if the device is a {@link Remote}
+     * @return True if the device is a {@link Remote}, false if not
+     * @since 1.0.0
+     */
+    public boolean isRemote(){
+        return this instanceof Remote;
+    }
+
+    /**
+     * Convert the device to the {@link Remote} class
+     * @return The device as {@link Remote}
+     * @since 1.0.0
+     */
+    public Remote toRemote(){
+        if(isRemote()) return (Remote) this;
+        return null;
+    }
+
 }
