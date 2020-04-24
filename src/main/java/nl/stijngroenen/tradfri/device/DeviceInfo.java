@@ -128,7 +128,7 @@ public class DeviceInfo extends DeviceProperties{
     }
 
     /**
-     * Set the manufacturer of the device<br/>
+     * Set the manufacturer of the device<br>
      * <i>Note: This does not change the actual device</i>
      * @param manufacturer The new manufacturer of the device
      * @since 1.0.0
@@ -138,7 +138,7 @@ public class DeviceInfo extends DeviceProperties{
     }
 
     /**
-     * Set the model name of the device<br/>
+     * Set the model name of the device<br>
      * <i>Note: This does not change the actual device</i>
      * @param modelName The new model name of the device
      * @since 1.0.0
@@ -148,7 +148,7 @@ public class DeviceInfo extends DeviceProperties{
     }
 
     /**
-     * Set the serial of the device<br/>
+     * Set the serial of the device<br>
      * <i>Note: This does not change the actual device</i>
      * @param serial The new serial of the device
      * @since 1.0.0
@@ -158,7 +158,7 @@ public class DeviceInfo extends DeviceProperties{
     }
 
     /**
-     * Set the firmware version of the device<br/>
+     * Set the firmware version of the device<br>
      * <i>Note: This does not change the actual device</i>
      * @param firmwareVersion The new firmware version of the device
      * @since 1.0.0
@@ -168,7 +168,7 @@ public class DeviceInfo extends DeviceProperties{
     }
 
     /**
-     * Set the power source of the device<br/>
+     * Set the power source of the device<br>
      * <i>Note: This does not change the actual device</i>
      * @param powerSource The new power source of the device
      * @since 1.0.0
@@ -178,7 +178,7 @@ public class DeviceInfo extends DeviceProperties{
     }
 
     /**
-     * Set the battery level of the device<br/>
+     * Set the battery level of the device<br>
      * <i>Note: This does not change the actual device</i>
      * @param batteryLevel The new battery level of the device
      * @since 1.0.0

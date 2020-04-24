@@ -164,8 +164,8 @@ public class Light extends Device {
     }
 
     /**
-     * Update the colour of the light in the update queue to a predefined hexadecimal colour<br/>
-     * Available colours:<br/>
+     * Update the colour of the light in the update queue to a predefined hexadecimal colour<br>
+     * Available colours:<br>
      * <ul>
      *     <li>RGB: {@link nl.stijngroenen.tradfri.util.ColourHex}</li>
      *     <li>Colour temperatures: {@link nl.stijngroenen.tradfri.util.ColourTemperatureHex}</li>
@@ -326,8 +326,8 @@ public class Light extends Device {
     }
 
     /**
-     * Set the colour of the light to a predefined hexadecimal colour<br/>
-     * Available colours:<br/>
+     * Set the colour of the light to a predefined hexadecimal colour<br>
+     * Available colours:<br>
      * <ul>
      *     <li>RGB: {@link nl.stijngroenen.tradfri.util.ColourHex}</li>
      *     <li>Colour temperatures: {@link nl.stijngroenen.tradfri.util.ColourTemperatureHex}</li>
@@ -344,8 +344,8 @@ public class Light extends Device {
     }
 
     /**
-     * Set the colour of the light to a predefined hexadecimal colour<br/>
-     * Available colours:<br/>
+     * Set the colour of the light to a predefined hexadecimal colour<br>
+     * Available colours:<br>
      * <ul>
      *     <li>RGB: {@link nl.stijngroenen.tradfri.util.ColourHex}</li>
      *     <li>Colour temperatures: {@link nl.stijngroenen.tradfri.util.ColourTemperatureHex}</li>

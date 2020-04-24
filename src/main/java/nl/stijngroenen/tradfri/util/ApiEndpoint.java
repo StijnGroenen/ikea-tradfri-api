@@ -75,31 +75,31 @@ public class ApiEndpoint {
     // Gateway
 
     /**
-     * The endpoint to authenticate a new client to the IKEA TRÅDFRI gateway<br/>
+     * The endpoint to authenticate a new client to the IKEA TRÅDFRI gateway<br>
      * <i>Value: {@value}</i>
      */
     public static final String AUTHENTICATE = "15011/9063";
 
     /**
-     * The endpoint to reboot the IKEA TRÅDFRI gateway<br/>
+     * The endpoint to reboot the IKEA TRÅDFRI gateway<br>
      * <i>Value: {@value}</i>
      */
     public static final String GATEWAY_REBOOT = "15011/9030";
 
     /**
-     * The endpoint to reset the IKEA TRÅDFRI gateway<br/>
+     * The endpoint to reset the IKEA TRÅDFRI gateway<br>
      * <i>Value: {@value}</i>
      */
     public static final String GATEWAY_RESET = "15011/9031";
 
     /**
-     * The endpoint to update the firmware of the IKEA TRÅDFRI gateway<br/>
+     * The endpoint to update the firmware of the IKEA TRÅDFRI gateway<br>
      * <i>Value: {@value}</i>
      */
     public static final String GATEWAY_UPDATE_FIRMWARE = "15011/9034";
 
     /**
-     * The endpoint to get the details of the IKEA TRÅDFRI gateway<br/>
+     * The endpoint to get the details of the IKEA TRÅDFRI gateway<br>
      * <i>Value: {@value}</i>
      */
     public static final String GATEWAY_DETAILS = "15011/15012";
@@ -107,31 +107,31 @@ public class ApiEndpoint {
     // Global
 
     /**
-     * The endpoint for IKEA TRÅDFRI devices<br/>
+     * The endpoint for IKEA TRÅDFRI devices<br>
      * <i>Value: {@value}</i>
      */
     public static final String DEVICES = "15001";
 
     /**
-     * The endpoint for IKEA TRÅDFRI groups<br/>
+     * The endpoint for IKEA TRÅDFRI groups<br>
      * <i>Value: {@value}</i>
      */
     public static final String GROUPS = "15004";
 
     /**
-     * The endpoint for IKEA TRÅDFRI scenes<br/>
+     * The endpoint for IKEA TRÅDFRI scenes<br>
      * <i>Value: {@value}</i>
      */
     public static final String SCENES = "15005";
 
     /**
-     * The endpoint for IKEA TRÅDFRI notifications<br/>
+     * The endpoint for IKEA TRÅDFRI notifications<br>
      * <i>Value: {@value}</i>
      */
     public static final String NOTIFICATIONS = "15006";
 
     /**
-     * The endpoint for IKEA TRÅDFRI smart tasks<br/>
+     * The endpoint for IKEA TRÅDFRI smart tasks<br>
      * <i>Value: {@value}</i>
      */
     public static final String SMART_TASKS = "15010";

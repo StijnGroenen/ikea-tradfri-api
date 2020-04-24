@@ -55,7 +55,7 @@ public class PlugProperties extends DeviceProperties {
     }
 
     /**
-     * Set the on state of the plug within the PlugProperties class<br/>
+     * Set the on state of the plug within the PlugProperties class<br>
      * <i>Note: This does not change the actual plug</i>
      * @param on The new on state for the plug (true for on, false for off)
      * @since 1.0.0
