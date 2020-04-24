@@ -285,6 +285,7 @@ public class Light extends Device {
      * Set the on / off state of the light
      * @param on The new on / off state for the light (true for on, false for off)
      * @param transitionTime The transition time for updating the light
+     * @return True if successfully updated the on / off state of the light, false if not
      * @since 1.0.0
      */
     public boolean setOn(Boolean on, Integer transitionTime) {
@@ -297,6 +298,7 @@ public class Light extends Device {
     /**
      * Set the on / off state of the light
      * @param on The new on / off state for the light (true for on, false for off)
+     * @return True if successfully updated the on / off state of the light, false if not
      * @since 1.0.0
      */
     public boolean setOn(Boolean on){
@@ -307,6 +309,7 @@ public class Light extends Device {
      * Set the brightness of the light
      * @param brightness The new brightness for the light
      * @param transitionTime The transition time for updating the light
+     * @return True if successfully updated the brightness of the light, false if not
      * @since 1.0.0
      */
     public boolean setBrightness(Integer brightness, Integer transitionTime) {
@@ -319,6 +322,7 @@ public class Light extends Device {
     /**
      * Set the brightness of the light
      * @param brightness The new brightness for the light
+     * @return True if successfully updated the brightness of the light, false if not
      * @since 1.0.0
      */
     public boolean setBrightness(Integer brightness){
@@ -334,6 +338,7 @@ public class Light extends Device {
      * </ul>
      * @param colourHex The new colour for the light
      * @param transitionTime The transition time for updating the light
+     * @return True if successfully updated the colour of the light, false if not
      * @since 1.0.0
      */
     public boolean setColourHex(String colourHex, Integer transitionTime) {
@@ -351,6 +356,7 @@ public class Light extends Device {
      *     <li>Colour temperatures: {@link nl.stijngroenen.tradfri.util.ColourTemperatureHex}</li>
      * </ul>
      * @param colourHex The new colour for the light
+     * @return True if successfully updated the colour of the light, false if not
      * @since 1.0.0
      */
     public boolean setColourHex(String colourHex){
@@ -361,6 +367,7 @@ public class Light extends Device {
      * Set the hue of the light
      * @param hue The new hue for the light
      * @param transitionTime The transition time for updating the light
+     * @return True if successfully updated the hue of the light, false if not
      * @since 1.0.0
      */
     public boolean setHue(Integer hue, Integer transitionTime) {
@@ -373,6 +380,7 @@ public class Light extends Device {
     /**
      * Set the hue of the light
      * @param hue The new hue for the light
+     * @return True if successfully updated the hue of the light, false if not
      * @since 1.0.0
      */
     public boolean setHue(Integer hue){
@@ -383,6 +391,7 @@ public class Light extends Device {
      * Set the saturation of the light
      * @param saturation The new saturation for the light
      * @param transitionTime The transition time for updating the light
+     * @return True if successfully updated the saturation of the light, false if not
      * @since 1.0.0
      */
     public boolean setSaturation(Integer saturation, Integer transitionTime) {
@@ -395,6 +404,7 @@ public class Light extends Device {
     /**
      * Set the saturation of the light
      * @param saturation The new saturation for the light
+     * @return True if successfully updated the saturation of the light, false if not
      * @since 1.0.0
      */
     public boolean setSaturation(Integer saturation){
@@ -406,6 +416,7 @@ public class Light extends Device {
      * @param colourX The X value of the new colour for the light
      * @param colourY The Y value of the new colour for the light
      * @param transitionTime The transition time for updating the light
+     * @return True if successfully updated the colour of the light, false if not
      * @since 1.0.0
      */
     public boolean setColourXY(Integer colourX, Integer colourY, Integer transitionTime) {
@@ -420,6 +431,7 @@ public class Light extends Device {
      * Set the colour of the light
      * @param colourX The X value of the new colour for the light
      * @param colourY The Y value of the new colour for the light
+     * @return True if successfully updated the colour of the light, false if not
      * @since 1.0.0
      */
     public boolean setColourXY(Integer colourX, Integer colourY){
@@ -432,6 +444,7 @@ public class Light extends Device {
      * @param colourGreen The green value of the new colour for the light
      * @param colourBlue The blue value of the new colour for the light
      * @param transitionTime The transition time for updating the light
+     * * @return True if successfully updated the colour of the light, false if not
      * @since 1.0.0
      */
     public boolean setColourRGB(int colourRed, int colourGreen, int colourBlue, Integer transitionTime) {
@@ -465,6 +478,7 @@ public class Light extends Device {
      * @param colourRed The red value of the new colour for the light
      * @param colourGreen The green value of the new colour for the light
      * @param colourBlue The blue value of the new colour for the light
+     * @return True if successfully updated the colour of the light, false if not
      * @since 1.0.0
      */
     public boolean setColourRGB(int colourRed, int colourGreen, int colourBlue){
@@ -475,6 +489,7 @@ public class Light extends Device {
      * Set the colour temperature of the light
      * @param colourTemperature The new colour temperature for the light
      * @param transitionTime The transition time for updating the light
+     * @return True if successfully updated the colour temperature of the light, false if not
      * @since 1.0.0
      */
     public boolean setColourTemperature(Integer colourTemperature, Integer transitionTime) {
@@ -487,6 +502,7 @@ public class Light extends Device {
     /**
      * Set the colour temperature of the light
      * @param colourTemperature The new colour temperature for the light
+     * @return True if successfully updated the colour temperature of the light, false if not
      * @since 1.0.0
      */
     public boolean setColourTemperature(Integer colourTemperature){
