@@ -18,6 +18,42 @@ ikea-tradfri-api is a Java library for communicating with IKEA TRÅDFRI devices.
 
 
 
+## Installation
+
+If possible, always try to use the last version of this library for your application. The latest version can be found on the Maven Central repository and on the GitHub Releases page.
+
+
+
+### Maven
+
+To install this library using Maven, add the following dependency to your POM file:
+
+```xml
+<dependency>
+  <groupId>nl.stijngroenen.tradfri</groupId>
+  <artifactId>ikea-tradfri-api</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
+
+
+### Gradle
+
+To install this library using Gradle, add the following dependency to your build file:
+
+```groovy
+implementation 'nl.stijngroenen.tradfri:ikea-tradfri-api:1.0.0'
+```
+
+
+
+### JAR
+
+If you are not using a dependency management system (like Maven or Gradle), you could also add the standalone JAR file to your classpath. The JAR file can be downloaded from the Maven Central repository or from the GitHub Releases page. Make sure to also add the [dependencies](#built-with) to your classpath.
+
+
+
 ## How To Use
 
 ### Connect to an IKEA TRÅDFRI gateway for the first time
