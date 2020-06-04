@@ -2,6 +2,8 @@
 
 ikea-tradfri-api is a Java library for communicating with IKEA TRÅDFRI devices.
 
+[![Maven Central](https://img.shields.io/maven-central/v/nl.stijngroenen.tradfri/ikea-tradfri-api?style=flat)](https://search.maven.org/artifact/nl.stijngroenen.tradfri/ikea-tradfri-api) [![Continuous Integration](https://github.com/StijnGroenen/ikea-tradfri-api/workflows/Continuous%20Integration/badge.svg)](https://github.com/StijnGroenen/ikea-tradfri-api/actions?query=workflow%3A%22Continuous+Integration%22+branch%3Amaster) [![Release](https://github.com/StijnGroenen/ikea-tradfri-api/workflows/Release/badge.svg)](https://github.com/StijnGroenen/ikea-tradfri-api/actions?query=workflow%3ARelease+branch%3Amaster) [![GitHub issues](https://img.shields.io/github/issues/stijngroenen/ikea-tradfri-api?style=flat)](https://github.com/StijnGroenen/ikea-tradfri-api/issues) [![GitHub contributors](https://img.shields.io/github/contributors/stijngroenen/ikea-tradfri-api?style=flat)](https://github.com/StijnGroenen/ikea-tradfri-api/graphs/contributors) [![GitHub stars](https://img.shields.io/github/stars/stijngroenen/ikea-tradfri-api?style=flat)](https://github.com/StijnGroenen/ikea-tradfri-api) [![License](https://img.shields.io/github/license/stijngroenen/ikea-tradfri-api?style=flat)](https://github.com/StijnGroenen/ikea-tradfri-api/blob/master/LICENSE)
+
 
 
 ## Features
