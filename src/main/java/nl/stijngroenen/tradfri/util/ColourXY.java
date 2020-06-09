@@ -86,4 +86,14 @@ public class ColourXY {
     public void setY(Integer Y) {
         this.Y = Y;
     }
+
+    /**
+     * Construct the ColourXY class from the {@link ColourRGB} class
+     * @param colourRGB The {@link ColourRGB} class
+     * @return The ColourXY class
+     * @since 1.1.0
+     */
+    public static ColourXY fromRGB(ColourRGB colourRGB){
+        return colourRGB.toXY();
+    }
 }
