@@ -19,11 +19,12 @@ package nl.stijngroenen.tradfri.device;
 import nl.stijngroenen.tradfri.payload.DeviceRequest;
 import nl.stijngroenen.tradfri.util.ApiEndpoint;
 import nl.stijngroenen.tradfri.util.CoapClient;
+import nl.stijngroenen.tradfri.util.ColourXY;
 
 /**
  * The class that represents an IKEA TRÅDFRI light
  * @author Stijn Groenen
- * @version 1.0.0
+ * @version 1.1.0
  */
 public class Light extends Device {
 
@@ -217,6 +218,20 @@ public class Light extends Device {
     public void updateColourXY(Integer colourX, Integer colourY) {
         newProperties.setColourX(colourX);
         newProperties.setColourY(colourY);
+        newProperties.setColourHex(null);
+        newProperties.setHue(null);
+        newProperties.setSaturation(null);
+        newProperties.setColourTemperature(null);
+    }
+
+    /**
+     * Update the colour of the light in the update queue
+     * @param colourXY The new colour for the light
+     * @since 1.1.0
+     */
+    public void updateColour(ColourXY colourXY) {
+        newProperties.setColourX(colourXY.getX());
+        newProperties.setColourY(colourXY.getY());
         newProperties.setColourHex(null);
         newProperties.setHue(null);
         newProperties.setSaturation(null);
@@ -436,6 +451,27 @@ public class Light extends Device {
      */
     public boolean setColourXY(Integer colourX, Integer colourY){
         return setColourXY(colourX, colourY, null);
+    }
+
+    /**
+     * Set the colour of the light
+     * @param colourXY The new colour for the light
+     * @param transitionTime The transition time for updating the light
+     * @return True if successfully updated the colour of the light, false if not
+     * @since 1.1.0
+     */
+    public boolean setColour(ColourXY colourXY, Integer transitionTime) {
+        return setColourXY(colourXY.getX(), colourXY.getY(), transitionTime);
+    }
+
+    /**
+     * Set the colour of the light
+     * @param colourXY The new colour for the light
+     * @return True if successfully updated the colour of the light, false if not
+     * @since 1.1.0
+     */
+    public boolean setColour(ColourXY colourXY){
+        return setColour(colourXY, null);
     }
 
     /**
