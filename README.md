@@ -15,6 +15,7 @@ ikea-tradfri-api is a Java library for communicating with IKEA TRÅDFRI devices.
  - Get the current state of a plug
  - Change the state of a plug (on / off)
  - Events to automatically detect changes for devices
+ - Support for RGB colours for lights
 
 
 
@@ -176,7 +177,7 @@ if(device.isLight()){
     Light light = device.toLight();
     light.updateOn(true);
     light.updateBrightness(128);
-    light.updateColour(ColourHex.BLUE);
+    light.updateColourHex(ColourHex.BLUE);
     light.applyUpdates();
 }
 ```
