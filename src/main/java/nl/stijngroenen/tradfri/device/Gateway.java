@@ -73,6 +73,7 @@ public class Gateway {
         request.setIdentity(identity);
         setCredentials("Client_identity", securityCode);
         AuthenticateResponse response = coapClient.post(ApiEndpoint.getUri(ApiEndpoint.AUTHENTICATE), request, AuthenticateResponse.class);
+        if(response == null) return null;
         Credentials credentials = new Credentials(identity, response.getPresharedKey());
         setCredentials(credentials);
         return credentials;
@@ -158,6 +159,7 @@ public class Gateway {
     public Device[] getDevices(){
         ArrayList<Device> deviceList = new ArrayList<>();
         int[] deviceIds = getDeviceIds();
+        if(deviceIds == null) return null;
         for(int deviceId: deviceIds){
             Device device = getDevice(deviceId);
             deviceList.add(device);

@@ -2,6 +2,8 @@
 
 ikea-tradfri-api is a Java library for communicating with IKEA TRÅDFRI devices.
 
+[![Maven Central](https://img.shields.io/maven-central/v/nl.stijngroenen.tradfri/ikea-tradfri-api?style=flat)](https://search.maven.org/artifact/nl.stijngroenen.tradfri/ikea-tradfri-api) [![Continuous Integration](https://github.com/StijnGroenen/ikea-tradfri-api/workflows/Continuous%20Integration/badge.svg)](https://github.com/StijnGroenen/ikea-tradfri-api/actions?query=workflow%3A%22Continuous+Integration%22+branch%3Amaster) [![Release](https://github.com/StijnGroenen/ikea-tradfri-api/workflows/Release/badge.svg)](https://github.com/StijnGroenen/ikea-tradfri-api/actions?query=workflow%3ARelease+branch%3Amaster) [![GitHub issues](https://img.shields.io/github/issues/stijngroenen/ikea-tradfri-api?style=flat)](https://github.com/StijnGroenen/ikea-tradfri-api/issues) [![GitHub contributors](https://img.shields.io/github/contributors/stijngroenen/ikea-tradfri-api?style=flat)](https://github.com/StijnGroenen/ikea-tradfri-api/graphs/contributors) [![GitHub stars](https://img.shields.io/github/stars/stijngroenen/ikea-tradfri-api?style=flat)](https://github.com/StijnGroenen/ikea-tradfri-api) [![License](https://img.shields.io/github/license/stijngroenen/ikea-tradfri-api?style=flat)](https://github.com/StijnGroenen/ikea-tradfri-api/blob/master/LICENSE)
+
 
 
 ## Features
@@ -13,6 +15,43 @@ ikea-tradfri-api is a Java library for communicating with IKEA TRÅDFRI devices.
  - Get the current state of a plug
  - Change the state of a plug (on / off)
  - Events to automatically detect changes for devices
+ - Support for RGB colours for lights
+
+
+
+## Installation
+
+If possible, always try to use the latest version of this library for your application. The latest version can be found on the Maven Central repository and on the GitHub Releases page.
+
+
+
+### Maven
+
+To install this library using Maven, add the following dependency to your POM file:
+
+```xml
+<dependency>
+  <groupId>nl.stijngroenen.tradfri</groupId>
+  <artifactId>ikea-tradfri-api</artifactId>
+  <version>1.1.0</version>
+</dependency>
+```
+
+
+
+### Gradle
+
+To install this library using Gradle, add the following dependency to your build file:
+
+```groovy
+implementation 'nl.stijngroenen.tradfri:ikea-tradfri-api:1.1.0'
+```
+
+
+
+### JAR
+
+If you are not using a dependency management system (like Maven or Gradle), you could also add the standalone JAR file to your classpath. The JAR file can be downloaded from the Maven Central repository or from the GitHub Releases page. Make sure to also add the [dependencies](#built-with) to your classpath.
 
 
 
@@ -138,7 +177,7 @@ if(device.isLight()){
     Light light = device.toLight();
     light.updateOn(true);
     light.updateBrightness(128);
-    light.updateColour(ColourHex.BLUE);
+    light.updateColourHex(ColourHex.BLUE);
     light.applyUpdates();
 }
 ```
