@@ -496,7 +496,7 @@ public class Light extends Device {
      * @since 1.1.0
      */
     public boolean setColour(ColourRGB colourRGB){
-        return setColour(colourRGB);
+        return setColour(colourRGB, null);
     }
 
     /**
