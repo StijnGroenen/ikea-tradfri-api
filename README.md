@@ -33,7 +33,7 @@ To install this library using Maven, add the following dependency to your POM fi
 <dependency>
   <groupId>nl.stijngroenen.tradfri</groupId>
   <artifactId>ikea-tradfri-api</artifactId>
-  <version>1.1.1</version>
+  <version>1.2.0</version>
 </dependency>
 ```
 
@@ -44,7 +44,7 @@ To install this library using Maven, add the following dependency to your POM fi
 To install this library using Gradle, add the following dependency to your build file:
 
 ```groovy
-implementation 'nl.stijngroenen.tradfri:ikea-tradfri-api:1.1.1'
+implementation 'nl.stijngroenen.tradfri:ikea-tradfri-api:1.2.0'
 ```
 
 
