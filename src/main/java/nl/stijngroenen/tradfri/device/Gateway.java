@@ -164,7 +164,9 @@ public class Gateway {
             return new Remote(response.getName(), response.getCreationDate(), response.getInstanceId(), response.getDeviceInfo(), coapClient);
         }else if(response.getDeviceInfo().getModelName().equals("TRADFRI motion sensor")){
             return new MotionSensor(response.getName(), response.getCreationDate(), response.getInstanceId(), response.getDeviceInfo(), coapClient);
-        }else{
+        }else if(response.getDeviceInfo().getModelName().contains("blind")) {
+            return new Blind(response.getName(), response.getCreationDate(), response.getInstanceId(), response.getDeviceInfo(), coapClient);
+        } else {
             return new Device(response.getName(), response.getCreationDate(), response.getInstanceId(), response.getDeviceInfo(), coapClient);
         }
     }

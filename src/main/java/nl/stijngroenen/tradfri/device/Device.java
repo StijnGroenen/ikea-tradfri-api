@@ -235,6 +235,7 @@ public class Device {
         if(isPlug()) return DeviceType.PLUG;
         if(isRemote()) return DeviceType.REMOTE;
         if(isMotionSensor()) return DeviceType.MOTION_SENSOR;
+        if(isBlind()) return DeviceType.BLIND;
         return DeviceType.UNKNOWN;
     }
 
@@ -311,6 +312,25 @@ public class Device {
      */
     public MotionSensor toMotionSensor(){
         if(isMotionSensor()) return (MotionSensor) this;
+        return null;
+    }
+
+    /**
+     * Check if the device is a {@link Blind}
+     * @return True if the device is a {@link Blind}, false if not
+     * @since 1.0.0
+     */
+    public boolean isBlind(){
+        return this instanceof Blind;
+    }
+
+    /**
+     * Convert the device to the {@link Blind} class
+     * @return The device as {@link Blind}
+     * @since 1.0.0
+     */
+    public Blind toBlind(){
+        if(isBlind()) return (Blind) this;
         return null;
     }
 
