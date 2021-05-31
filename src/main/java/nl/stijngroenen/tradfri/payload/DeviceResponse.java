@@ -18,6 +18,7 @@ package nl.stijngroenen.tradfri.payload;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import nl.stijngroenen.tradfri.device.BlindProperties;
 import nl.stijngroenen.tradfri.device.DeviceInfo;
 import nl.stijngroenen.tradfri.device.LightProperties;
 import nl.stijngroenen.tradfri.device.PlugProperties;
@@ -66,6 +67,12 @@ public class DeviceResponse {
      */
     @JsonProperty(ApiCode.PLUG)
     private PlugProperties[] plugProperties;
+
+    /**
+     * The properties of the plug (if the device is a plug)
+     */
+    @JsonProperty(ApiCode.BLIND)
+    private BlindProperties[] blindProperties;
 
     /**
      * Construct the DeviceResponse class
@@ -180,5 +187,23 @@ public class DeviceResponse {
      */
     public void setPlugProperties(PlugProperties[] plugProperties) {
         this.plugProperties = plugProperties;
+    }
+
+    /**
+     * Get the properties of the blind (if the device is a blind)
+     * @return The properties of the Blind
+     * @since 1.2.0
+     */
+    public BlindProperties[] getBlindProperties() {
+        return this.blindProperties;
+    }
+
+    /**
+     * Set the properties of the plug (if the device is a plug)
+     * @param blindProperties The new properties of the plug
+     * @since 1.2.0
+     */
+    public void setBlindProperties(BlindProperties[] blindProperties) {
+        this.blindProperties = blindProperties;
     }
 }

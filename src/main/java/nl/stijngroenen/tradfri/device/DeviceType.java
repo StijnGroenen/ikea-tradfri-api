@@ -11,4 +11,5 @@ public enum DeviceType {
     PLUG,
     REMOTE,
     MOTION_SENSOR,
+    BLIND,
 }
